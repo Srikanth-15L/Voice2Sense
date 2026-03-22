@@ -1,0 +1,16 @@
+{
+  "keys": [
+    "eventHandlers",
+    "handleOpen",
+    "handleMessage",
+    "handleClose",
+    "handleError",
+    "socket",
+    "binaryAwareHandler"
+  ],
+  "proto": [
+    "constructor",
+    "setupBinaryHandling",
+    "connect"
+  ]
+}

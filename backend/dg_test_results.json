@@ -1,0 +1,11 @@
+{
+  "WITH smart_format": {
+    "status": "TIMEOUT"
+  },
+  "WITHOUT smart_format": {
+    "status": "TIMEOUT"
+  },
+  "WITHOUT smart_format OR interim": {
+    "status": "TIMEOUT"
+  }
+}

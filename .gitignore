@@ -1,0 +1,11 @@
+.env
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+backend/.env
+backend/node_modules/
+Voice2Sense-main/hear-clearly-india-main/.env
+Voice2Sense-main/hear-clearly-india-main/node_modules/
+Voice2Sense-main/hear-clearly-india-main/dist/

@@ -1,0 +1,24 @@
+{
+  "name": "voice2sense-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real-time text processing API with Groq (LLaMA 3)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.7.0",
+    "groq-sdk": "^0.15.0",
+    "twilio": "^5.13.0",
+    "ws": "^8.20.0"
+  }
+}
