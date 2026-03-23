@@ -1,5 +1,6 @@
 function resolveCallUrl(): string {
-  // Always use the relative proxy path in development to ensure Vite intercepts it
+  const base = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
+  if (base) return `${base}/call`;
   return "/api/call";
 }
 

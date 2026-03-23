@@ -61,13 +61,25 @@ export const CallBotPanel = ({
   useEffect(() => {
     if (!activeSid || !open) return;
 
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    // If on localhost 8080, connect to 3001. Otherwise use current host (tunnel)
-    const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'localhost:3001'
-      : window.location.host;
+    let wsUrl: string;
+    const apiUrl = import.meta.env.VITE_API_URL;
 
-    const wsUrl = `${protocol}//${host}/api/call/stream`;
+    if (apiUrl) {
+      try {
+        const url = new URL(apiUrl);
+        const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+        wsUrl = `${wsProtocol}//${url.host}/api/call/stream`;
+      } catch (e) {
+        console.error("[ws-ui] Invalid VITE_API_URL:", apiUrl);
+        wsUrl = `ws://${window.location.host}/api/call/stream`;
+      }
+    } else {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const host = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'localhost:3001'
+        : window.location.host;
+      wsUrl = `${protocol}//${host}/api/call/stream`;
+    }
 
     console.log(`[ws-ui] Connecting to transcript stream: ${wsUrl}`);
     const socket = new WebSocket(wsUrl);
