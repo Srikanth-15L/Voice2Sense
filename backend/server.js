@@ -77,6 +77,21 @@ app.use(
 );
 app.use(express.json({ limit: "512kb" }));
 app.use(express.urlencoded({ extended: true }));
+
+// Request Logger for debugging 404s on Render
+app.use((req, res, next) => {
+  console.log(`[server] ${req.method} ${req.url}`);
+  next();
+});
+
+app.get("/", (req, res) => {
+  res.status(200).json({ 
+    ok: true, 
+    message: "Voice2Sense Backend is running",
+    version: "1.0.1",
+    endpoints: ["/analyze", "/help", "/call/dial", "/call/twiml"]
+  });
+});
 app.use("/analyze", rateLimit, analyzeRouter);
 app.use("/help", rateLimit, helpRouter);
 app.use("/call", callRouter);
