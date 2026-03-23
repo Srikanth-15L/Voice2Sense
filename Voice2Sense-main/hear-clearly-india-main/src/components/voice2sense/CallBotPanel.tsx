@@ -4,6 +4,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import {
   PhoneForwarded,
@@ -272,10 +273,10 @@ export const CallBotPanel = ({
             </div>
             <div className="flex flex-col text-left">
               <span className="text-sm font-bold">Relay Call Assistant</span>
-              <div className="flex items-center gap-1 text-[10px] text-green-400">
+              <SheetDescription className="flex items-center gap-1 text-[10px] text-green-400">
                 <Signal className="w-3 h-3" />
                 Live Proxy Connection
-              </div>
+              </SheetDescription>
             </div>
             <Button variant="ghost" size="sm" onClick={() => setIsDialerOpen(!isDialerOpen)} className="ml-auto text-white/50 hover:text-white">
               {isDialerOpen ? <MessageSquare className="w-4 h-4" /> : <PhoneForwarded className="w-4 h-4" />}

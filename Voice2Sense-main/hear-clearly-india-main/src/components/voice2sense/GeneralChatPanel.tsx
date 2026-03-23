@@ -4,6 +4,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Bot, User, Send, Mic, MicOff, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -143,9 +144,9 @@ export const GeneralChatPanel = ({
             </div>
             <div className="flex flex-col text-left">
               <span className="text-base font-semibold">Voice2Sense assistant</span>
-              <span className="text-xs font-normal text-muted-foreground">
+              <SheetDescription className="text-xs font-normal text-muted-foreground">
                 General questions and how-to help
-              </span>
+              </SheetDescription>
             </div>
             <Button
               type="button"

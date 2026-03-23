@@ -5,6 +5,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { type TranscriptionSegment } from "@/types/voice2sense";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -41,6 +42,9 @@ const HistoryPanel = ({
       <SheetContent className="w-full sm:max-w-md bg-card border-border overflow-hidden flex flex-col">
         <SheetHeader>
           <SheetTitle className="text-foreground">Session History</SheetTitle>
+          <SheetDescription className="text-muted-foreground">
+            View your previous transcription sessions.
+          </SheetDescription>
         </SheetHeader>
 
         <ScrollArea className="flex-1 mt-4 -mx-2 px-2">

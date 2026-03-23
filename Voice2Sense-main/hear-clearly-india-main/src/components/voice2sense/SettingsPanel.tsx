@@ -56,6 +56,9 @@ const SettingsPanel = ({
       <SheetContent className="w-full sm:max-w-md bg-card border-border overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-foreground">Accessibility Settings</SheetTitle>
+          <SheetDescription className="text-muted-foreground">
+            Customize how captions and audio are processed.
+          </SheetDescription>
         </SheetHeader>
 
         <div className="mt-6 space-y-8">

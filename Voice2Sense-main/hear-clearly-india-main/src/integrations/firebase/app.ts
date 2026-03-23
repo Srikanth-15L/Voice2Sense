@@ -1,6 +1,10 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
 import { getAuth, type Auth } from "firebase/auth";
-import { getFirestore, type Firestore } from "firebase/firestore";
+import { 
+  getFirestore, 
+  initializeFirestore, 
+  type Firestore 
+} from "firebase/firestore";
 import type { Analytics } from "firebase/analytics";
 
 function getFirebaseConfig() {
@@ -30,6 +34,7 @@ function getFirebaseConfig() {
 }
 
 let appInstance: FirebaseApp | undefined;
+let firestoreInstance: Firestore | undefined;
 let analyticsInstance: Analytics | null = null;
 
 /** Lazy init so missing .env does not crash the bundle before React can render a message. */
@@ -60,5 +65,12 @@ export function getAuthInstance(): Auth {
 }
 
 export function getFirestoreInstance(): Firestore {
-  return getFirestore(getFirebaseApp());
+  if (!firestoreInstance) {
+    // We use initializeFirestore instead of getFirestore to force long-polling.
+    // This fixes ERR_QUIC_PROTOCOL_ERROR which often happens on certain networks.
+    firestoreInstance = initializeFirestore(getFirebaseApp(), {
+      experimentalForceLongPolling: true,
+    });
+  }
+  return firestoreInstance;
 }
