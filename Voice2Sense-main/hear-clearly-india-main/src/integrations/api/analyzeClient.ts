@@ -10,7 +10,7 @@ export type AnalyzeResult = {
 };
 
 function resolveAnalyzeUrl(): string {
-  const base = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
+  const base = (import.meta.env.VITE_API_URL || "https://voice2sense.onrender.com")?.replace(/\/$/, "");
   if (base) return `${base}/analyze`;
   return "/api/analyze";
 }

@@ -64,14 +64,14 @@ export const CallBotPanel = ({
     let wsUrl: string;
     const apiUrl = import.meta.env.VITE_API_URL;
 
-    if (apiUrl) {
+    if (apiUrl || window.location.hostname.includes('vercel.app')) {
       try {
-        const url = new URL(apiUrl);
+        const url = new URL(apiUrl || "https://voice2sense.onrender.com");
         const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
         wsUrl = `${wsProtocol}//${url.host}/api/call/stream`;
       } catch (e) {
-        console.error("[ws-ui] Invalid VITE_API_URL:", apiUrl);
-        wsUrl = `ws://${window.location.host}/api/call/stream`;
+        console.error("[ws-ui] Invalid API URL:", apiUrl);
+        wsUrl = `wss://voice2sense.onrender.com/api/call/stream`;
       }
     } else {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
