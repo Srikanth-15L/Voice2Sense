@@ -50,7 +50,7 @@ const CaptionDisplay = ({
         className="caption-display min-h-[300px] max-h-[500px] overflow-hidden rounded-xl border border-white/10"
         style={{ backgroundColor: settings.backgroundColor }}
       >
-        <ScrollArea className="h-[500px] w-full p-6" ref={scrollRef}>
+        <ScrollArea className="h-[500px] w-full p-4 md:p-6" ref={scrollRef}>
           <div className="space-y-6">
             {isEmpty ? (
               <div className="flex items-center justify-center h-[250px]">

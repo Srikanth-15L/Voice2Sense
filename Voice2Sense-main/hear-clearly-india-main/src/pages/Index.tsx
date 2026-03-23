@@ -184,8 +184,8 @@ const Index = () => {
         onChatbotClick={() => setGeneralChatOpen(true)}
       />
 
-      <main className="flex-1">
-        <div className="max-w-6xl mx-auto px-6 py-6 space-y-6">
+      <main className="flex-1 overflow-x-hidden">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2 space-y-6">
               <StatsCards
@@ -195,62 +195,66 @@ const Index = () => {
               />
 
               <div className="info-card">
-                <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
-                  <div className="flex flex-col">
-                    <h3 className="text-lg font-semibold">Configuration</h3>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span>Room ID: {roomId}</span>
-                      <button onClick={handleCopyRoomLink} className="text-primary hover:underline">Copy Link</button>
+                <div className="flex flex-col space-y-4 mb-6">
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex flex-col">
+                      <h3 className="text-lg font-semibold">Configuration</h3>
+                      <div className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground">
+                        <span>Room ID: {roomId}</span>
+                        <button onClick={handleCopyRoomLink} className="text-primary hover:underline">Copy Link</button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-4 border-r pr-4 border-border/50">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase font-bold text-muted-foreground">Privacy</span>
+                          <button
+                            onClick={() => setPrivacyMode(!privacyMode)}
+                            className={`w-7 h-3.5 rounded-full relative transition-colors ${privacyMode ? 'bg-green-500' : 'bg-secondary'}`}
+                          >
+                            <div className={`absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${privacyMode ? 'translate-x-3.5' : ''}`} />
+                          </button>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase font-bold text-muted-foreground">Avatar</span>
+                          <button
+                            onClick={() => setShowAvatar(!showAvatar)}
+                            className={`w-7 h-3.5 rounded-full relative transition-colors ${showAvatar ? 'bg-primary' : 'bg-secondary'}`}
+                          >
+                            <div className={`absolute top-0.5 left-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${showAvatar ? 'translate-x-3.5' : ''}`} />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 flex-wrap">
-                    <div className="flex items-center gap-4 mr-4 border-r pr-4 border-border/50">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] uppercase font-bold text-muted-foreground">Privacy</span>
-                        <button
-                          onClick={() => setPrivacyMode(!privacyMode)}
-                          className={`w-8 h-4 rounded-full relative transition-colors ${privacyMode ? 'bg-green-500' : 'bg-secondary'}`}
-                        >
-                          <div className={`absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white transition-transform ${privacyMode ? 'translate-x-4' : ''}`} />
-                        </button>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] uppercase font-bold text-muted-foreground">Avatar</span>
-                        <button
-                          onClick={() => setShowAvatar(!showAvatar)}
-                          className={`w-8 h-4 rounded-full relative transition-colors ${showAvatar ? 'bg-primary' : 'bg-secondary'}`}
-                        >
-                          <div className={`absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white transition-transform ${showAvatar ? 'translate-x-4' : ''}`} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                      {['Normal', 'Medical', 'Legal', 'Education'].map((mode) => (
-                        <button
-                          key={mode}
-                          onClick={() => setExpertMode(mode)}
-                          className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                            expertMode === mode
-                              ? 'bg-primary text-primary-foreground'
-                              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                          }`}
-                        >
-                          {mode}
-                        </button>
-                      ))}
-                    </div>
+                  <div className="flex overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide gap-2">
+                    {['Normal', 'Medical', 'Legal', 'Education'].map((mode) => (
+                      <button
+                        key={mode}
+                        onClick={() => setExpertMode(mode)}
+                        className={`px-3 py-1 rounded-full text-xs font-medium transition-all shrink-0 ${
+                          expertMode === mode
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                        }`}
+                      >
+                        {mode}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                <LanguageSelector
-                  sourceLanguage={sourceLanguage}
-                  targetLanguages={targetLanguages}
-                  onSourceChange={setSourceLanguage}
-                  onTargetToggle={handleTargetToggle}
-                />
+                <div className="pt-2 border-t border-border/10">
+                  <LanguageSelector
+                    sourceLanguage={sourceLanguage}
+                    targetLanguages={targetLanguages}
+                    onSourceChange={setSourceLanguage}
+                    onTargetToggle={handleTargetToggle}
+                  />
+                </div>
               </div>
 
               <CaptionDisplay
