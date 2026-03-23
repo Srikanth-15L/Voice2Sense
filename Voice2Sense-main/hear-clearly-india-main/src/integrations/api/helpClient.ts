@@ -1,5 +1,5 @@
 function resolveHelpUrl(): string {
-  const base = (import.meta.env.VITE_API_URL || "https://voice2sense-backend.onrender.com")?.replace(/\/$/, "");
+  const base = (import.meta.env.VITE_API_URL || "https://voice2sense.onrender.com")?.replace(/\/$/, "");
   if (base) return `${base}/help`;
   return "/api/help";
 }

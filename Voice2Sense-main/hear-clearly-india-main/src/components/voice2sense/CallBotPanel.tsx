@@ -66,12 +66,12 @@ export const CallBotPanel = ({
 
     if (apiUrl || window.location.hostname.includes('vercel.app')) {
       try {
-        const url = new URL(apiUrl || "https://voice2sense-backend.onrender.com");
+        const url = new URL(apiUrl || "https://voice2sense.onrender.com");
         const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
         wsUrl = `${wsProtocol}//${url.host}/api/call/stream`;
       } catch (e) {
         console.error("[ws-ui] Invalid API URL:", apiUrl);
-        wsUrl = `wss://voice2sense-backend.onrender.com/api/call/stream`;
+        wsUrl = `wss://voice2sense.onrender.com/api/call/stream`;
       }
     } else {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
